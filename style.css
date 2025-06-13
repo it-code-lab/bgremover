@@ -34,6 +34,7 @@ header.scrolled {
   color: #fff;
   font-size: 26px;
   font-weight: bold;
+  position: absolute;
 }
 
 .menu-toggle {
@@ -105,6 +106,9 @@ nav ul li:hover .user-dropdown {
 
 /* Responsive Menu */
 @media (max-width: 768px) {
+  .logo {
+    position: relative;
+  }
 .menu-toggle {
     display: block;
   }
