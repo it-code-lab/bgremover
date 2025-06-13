@@ -1,0 +1,69 @@
+
+.pricing {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.pricing h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.plan {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 280px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.plan h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #007BFF;
+}
+
+.plan p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.plan .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 15px;
+}
+
+.plan a.cta-button {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 25px;
+  background: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.plan a.cta-button:hover {
+  background: #0056b3;
+}
