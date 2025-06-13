@@ -22,6 +22,12 @@
       <input type="password" name="password" id="password" required />
     </div>
     <button type="submit" class="submit-btn">Login</button>
+    <p style="text-align:center; margin-top:15px;">
+  Don't have an account?
+  <a href="register.php">Sign up here</a><br>
+  <a href="forgot_password.php">Forgot Password?</a>
+</p>
+
   </form>
 </div>
 
