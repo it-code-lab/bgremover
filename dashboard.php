@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 ?>
-
+<?php include("header.php"); ?>
 <h2>Welcome, <?= htmlspecialchars($_SESSION['email']) ?></h2>
 <a href="logout.php">Logout</a>
 
