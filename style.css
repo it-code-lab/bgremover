@@ -18,29 +18,56 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-header .logo {
+.logo {
   color: #fff;
   font-size: 26px;
   font-weight: bold;
 }
 
-header nav ul {
+nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-header nav ul li a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;
 }
 
-header nav ul li a:hover {
+nav ul li a:hover {
   color: #00bcd4;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+  }
 }
 
 .hero {
