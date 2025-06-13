@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
 </head>
 <body>
   <?php include("components/header.php"); ?>
+  
   <main>
 <section class="pricing">
   <h1>Pricing Plans</h1>

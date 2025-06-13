@@ -11,8 +11,10 @@ if (!$user['is_verified']) {
 }
 
 if ($user && password_verify($_POST['password'], $user['password'])) {
-  $_SESSION['user_id'] = $user['id'];
-  $_SESSION['email'] = $user['email'];
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['first_name'] = $user['first_name'];
+$_SESSION['email'] = $user['email']; // Optional if still needed internally
+
   header("Location: dashboard.php");
 } else {
   echo "Invalid login.";

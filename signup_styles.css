@@ -27,6 +27,7 @@
   color: #444;
 }
 
+.form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
   padding: 10px;

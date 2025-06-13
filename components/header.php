@@ -12,9 +12,11 @@
       <?php else: ?>
         <li><a href="dashboard.php">Dashboard</a></li>
         <li><a href="logout.php">Logout</a></li>
-        <li><a href="#" style="pointer-events: none; color: #bbb;">
-          <?= htmlspecialchars($_SESSION['email']) ?>
-        </a></li>
+        <li>
+          <a href="profile.php" >
+            <?= htmlspecialchars($_SESSION['first_name']) ?>
+          </a>
+        </li>
       <?php endif; ?>
     </ul>
   </nav>
