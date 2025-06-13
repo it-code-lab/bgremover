@@ -5,19 +5,18 @@
     <ul id="nav-menu">
       <li><a href="index.php">Home</a></li>
       <li><a href="pricing.php">Pricing</a></li>
-      <li><a href="register.php">Sign Up</a></li>
-      <li><a href="login.php">Login</a></li>
-
-      <!-- Example user dropdown -->
-      <?php if (isset($_SESSION['user_id'])): ?>
-      <li>
-        <a href="#"><?= $_SESSION['email'] ?></a>
-        <div class="user-dropdown">
-          <a href="dashboard.php">Dashboard</a>
-          <a href="logout.php">Logout</a>
-        </div>
-      </li>
+      
+      <?php if (!isset($_SESSION['user_id'])): ?>
+        <li><a href="register.php">Sign Up</a></li>
+        <li><a href="login.php">Login</a></li>
+      <?php else: ?>
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="logout.php">Logout</a></li>
+        <li><a href="#" style="pointer-events: none; color: #bbb;">
+          <?= htmlspecialchars($_SESSION['email']) ?>
+        </a></li>
       <?php endif; ?>
     </ul>
   </nav>
 </header>
+

@@ -17,7 +17,6 @@ if (!isset($_SESSION['user_id'])) {
   <?php include("components/header.php"); ?>
 <div class="dashboard-container">
   <h2>Welcome, <?= htmlspecialchars($_SESSION['email']) ?></h2>
-  <a href="logout.php">Logout</a>
   <a href="buy_credits.php">Buy Credits</a>
 
   <form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
