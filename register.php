@@ -14,5 +14,7 @@
       <button type="submit">Sign Up</button>
     </form>
     </main>
+    <script src="header.js"></script>
+
 </body>
 </html>
