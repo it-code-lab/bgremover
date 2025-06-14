@@ -13,7 +13,7 @@
   require_once 'db.php';
   session_start();
 
-  \Stripe\Stripe::setApiKey("sk_test_your_secret_key");
+  \Stripe\Stripe::setApiKey("sk_test_51KQJ0wHYpvIFwCYEZw0SqDuSt9jvXAArlPaDI7GxwAaiNJyfgPEGNbyi8CKYx9YT2S3ZiZoHB4ilxuq6XsbdJBfP00cpwvugQ8");
 
   $session = \Stripe\Checkout\Session::create([
     'payment_method_types' => ['card'],

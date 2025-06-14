@@ -5,6 +5,7 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 ?>
+
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
@@ -13,30 +14,38 @@ if (!isset($_SESSION['user_id'])) {
 
 
 </head>
+
 <body>
+
+  <?php if (isset($_GET['credits']) && $_GET['credits'] === 'added'): ?>
+    <div class="alert alert-success">
+      🎉 Credits added successfully! You can now remove more backgrounds.
+    </div>
+  <?php endif; ?>
+
   <?php include("components/header.php"); ?>
-<div class="dashboard-container">
-<h2>Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?></h2>
+  <div class="dashboard-container">
+    <h2>Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?></h2>
 
-<div class="credit-summary">
-  You have <strong>12 credits</strong> remaining.
-</div>
+    <div class="credit-summary">
+      You have <strong>12 credits</strong> remaining.
+    </div>
 
-<div class="usage-stats">
-  Today’s usage: <strong>2 / 3 free background removals used</strong>
-</div>
+    <div class="usage-stats">
+      Today’s usage: <strong>2 / 3 free background removals used</strong>
+    </div>
 
-<a href="buy_credits.php" class="cta-button">Buy More Credits</a>
+    <a href="buy_credits.php" class="cta-button">Buy More Credits</a>
 
-<form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
-  <input type="file" name="image" id="imageInput" required>
-  <button type="submit">Remove Background</button>
-</form>
+    <form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
+      <input type="file" name="image" id="imageInput" required>
+      <button type="submit">Remove Background</button>
+    </form>
 
-<div id="result"></div>
+    <div id="result"></div>
 
-</div>
+  </div>
 
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
