@@ -5,6 +5,7 @@ session_start();
 <html lang="en">
 
 <head>
+  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <meta charset="UTF-8">
   <title>Home</title>
   <link rel="stylesheet" href="style.css">

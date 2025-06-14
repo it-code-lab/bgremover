@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="login_styles.css">

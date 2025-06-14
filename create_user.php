@@ -23,7 +23,7 @@
 
     // Send verification email
     $verify_link = "http://localhost/bgremover/verify_email.php?token=$token";
-    $subject = "Verify Your BG Remover Account";
+    $subject = "Verify Your CleanPix Account";
     $message = "Hi $first_name,\n\nClick the link below to verify your account:\n$verify_link";
     $headers = "From: no-reply@bgremover.com";
 

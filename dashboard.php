@@ -34,6 +34,7 @@ if ($remaining_free_uses > (10 - $total_usage)) {
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard_styles.css">

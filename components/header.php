@@ -1,5 +1,5 @@
 <header>
-  <div class="logo"><a href="index.php">BG Remover</a></div>
+  <div class="logo"><a href="index.php"><img src="/BGREMOVER/images/logo.png" alt="CleanPix Icon" height="32"></a></div>
   <button class="menu-toggle" id="menu-toggle">&#9776;</button>
   <nav>
     <ul id="nav-menu">

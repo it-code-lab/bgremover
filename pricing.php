@@ -51,6 +51,7 @@ $proPrice = round(20 * $rates[$currency], 2);
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Pricing</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pricing_styles.css">
