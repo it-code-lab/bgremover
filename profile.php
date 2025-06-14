@@ -23,16 +23,23 @@ if (!isset($_SESSION['user_id'])) {
     <h2>Your Profile</h2>
 
     <?php if (isset($_GET['updated'])): ?>
-      <div class="alert-success">
-        ✅ Profile updated successfully!
+      <div class="alert alert-success">
+        <strong>✔ Profile updated successfully!</strong>
+      </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['password_changed'])): ?>
+      <div class="alert alert-success">
+        <strong>🔐 Password changed successfully!</strong>
       </div>
     <?php endif; ?>
 
     <?php if (isset($_GET['error']) && $_GET['error'] === 'password_incorrect'): ?>
-      <div class="alert-error">
-        ❌ Current password is incorrect.
+      <div class="alert alert-error">
+        <strong>❌ Current password is incorrect.</strong>
       </div>
     <?php endif; ?>
+
 
 
     <div class="profile-section">
@@ -56,8 +63,8 @@ if (!isset($_SESSION['user_id'])) {
 
       <form action="change_password.php" method="POST">
         <label>Current Password</label>
-        <input type="password" name="current_password" 
-  class="<?= isset($_GET['error']) ? 'input-error' : '' ?>" autocomplete="off" required>
+        <input type="password" name="current_password" class="<?= isset($_GET['error']) ? 'input-error' : '' ?>"
+          autocomplete="off" required>
 
 
         <label>New Password</label>
