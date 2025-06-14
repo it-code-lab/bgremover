@@ -17,7 +17,12 @@ if ($user && password_verify($_POST['password'], $user['password'])) {
   $_SESSION['last_name'] = $user['last_name'];
   $_SESSION['email'] = $user['email']; // Optional if still needed internally
 
-  header("Location: dashboard.php");
+  $redirectTo = isset($_SESSION['redirect_after_login']) ? $_SESSION['redirect_after_login'] : 'dashboard.php';
+  unset($_SESSION['redirect_after_login']);
+  header("Location: $redirectTo");
+  exit();
+  // echo "Login successful. Redirecting...";
+  // header("Location: dashboard.php");
 } else {
   // echo "Invalid login.";
   header("Location: login.php?error=loginerror");

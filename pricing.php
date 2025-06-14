@@ -1,5 +1,47 @@
 <?php
 session_start();
+require_once 'conversion.php';
+function detectCurrencyFromIP() {
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $response = @file_get_contents("https://ipapi.co/{$ip}/json/");
+  if ($response) {
+    $data = json_decode($response, true);
+    $countryCode = strtoupper($data['country'] ?? '');
+    $currencyMap = [
+      'US' => 'usd', 'IN' => 'inr', 'CA' => 'cad', 'GB' => 'gbp', 'AU' => 'aud',
+      'EU' => 'eur', 'JP' => 'jpy', 'SG' => 'sgd', 'NZ' => 'nzd', 'ZA' => 'zar',
+      'BR' => 'brl', 'MX' => 'mxn', 'PH' => 'php', 'AE' => 'aed', 'HK' => 'hkd',
+      'MY' => 'myr', 'CH' => 'chf', 'SE' => 'sek', 'DK' => 'dkk', 'NO' => 'nok'
+    ];
+    return $currencyMap[$countryCode] ?? 'usd';
+  }
+  return 'usd';
+}
+
+
+$rates = getRates();
+$currency = $_GET['currency'] ?? detectCurrencyFromIP();
+if (!in_array($currency, SUPPORTED)) $currency = 'usd';
+
+$symbolMap = [
+  'usd' => '$', 'inr' => '₹', 'eur' => '€', 'gbp' => '£', 'aud' => 'A$', 'cad' => 'C$',
+  'jpy' => '¥', 'sgd' => 'S$', 'nzd' => 'NZ$', 'zar' => 'R', 'brl' => 'R$', 'mxn' => 'MX$',
+  'php' => '₱', 'aed' => 'د.إ', 'hkd' => 'HK$', 'myr' => 'RM', 'chf' => 'CHF',
+  'sek' => 'kr', 'dkk' => 'kr', 'nok' => 'kr'
+];
+
+$conversionRates = [
+  'usd' => 1, 'inr' => 83, 'eur' => 0.91, 'gbp' => 0.78, 'aud' => 1.5,
+  'cad' => 1.36, 'jpy' => 155, 'sgd' => 1.35, 'nzd' => 1.6, 'zar' => 18,
+  'brl' => 5.2, 'mxn' => 17, 'php' => 58, 'aed' => 3.67, 'hkd' => 7.8,
+  'myr' => 4.7, 'chf' => 0.9, 'sek' => 10.7, 'dkk' => 6.9, 'nok' => 10.5
+];
+
+$symbol = $symbolMap[$currency];
+// $rate = $conversionRates[$currency] ?? 1;
+
+$starterPrice = round(5 * $rates[$currency], 2);
+$proPrice = round(20 * $rates[$currency], 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +54,23 @@ session_start();
 </head>
 <body>
   <?php include("components/header.php"); ?>
-  
+
   <main>
     <section class="pricing-section">
       <h1>Flexible Credit Packs</h1>
       <p class="subtext">No subscriptions. Buy credits when you need them.</p>
+
+      <!-- Currency selector -->
+      <form method="GET" class="currency-form" style="text-align: right; margin-bottom: 20px;">
+        <label for="currency">Currency: </label>
+        <select name="currency" id="currency" onchange="this.form.submit()">
+          <?php foreach ($symbolMap as $code => $sym): ?>
+            <option value="<?= $code ?>" <?= $currency === $code ? 'selected' : '' ?>>
+              <?= strtoupper($code) ?> (<?= $sym ?>)
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </form>
 
       <div class="pricing-cards">
         <!-- Free Trial -->
@@ -28,7 +82,7 @@ session_start();
             <li class="muted">✘ No high-res output</li>
             <li class="muted">✘ Watermarked</li>
           </ul>
-          <div class="price">$0</div>
+          <div class="price"><?= $symbol . number_format(0, 2) ?></div>
           <p class="note">Automatically applied</p>
         </div>
 
@@ -40,8 +94,8 @@ session_start();
             <li>✓ High-res, no watermark</li>
             <li>✓ Never expires</li>
           </ul>
-          <div class="price">$5</div>
-          <a href="buy_credits.php?pack=20" class="buy-btn">Buy Now</a>
+          <div class="price"><?= $symbol . number_format($starterPrice, 2) ?></div>
+          <a href="buy_credits.php?pack=20&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
         </div>
 
         <!-- Pro Pack -->
@@ -52,8 +106,8 @@ session_start();
             <li>✓ High-res, no watermark</li>
             <li>✓ Never expires</li>
           </ul>
-          <div class="price">$20</div>
-          <a href="buy_credits.php?pack=100" class="buy-btn">Buy Now</a>
+          <div class="price"><?= $symbol . number_format($proPrice, 2) ?></div>
+          <a href="buy_credits.php?pack=100&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
         </div>
       </div>
     </section>
