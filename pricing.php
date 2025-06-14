@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once 'conversion.php';
-function detectCurrencyFromIP() {
+// Only fetch IP-based currency if not already stored
+if (!isset($_SESSION['user_currency'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
   $response = @file_get_contents("https://ipapi.co/{$ip}/json/");
   if ($response) {
@@ -13,15 +14,18 @@ function detectCurrencyFromIP() {
       'BR' => 'brl', 'MX' => 'mxn', 'PH' => 'php', 'AE' => 'aed', 'HK' => 'hkd',
       'MY' => 'myr', 'CH' => 'chf', 'SE' => 'sek', 'DK' => 'dkk', 'NO' => 'nok'
     ];
-    return $currencyMap[$countryCode] ?? 'usd';
+    $_SESSION['user_currency'] = $currencyMap[$countryCode] ?? 'usd';
+  } else {
+    $_SESSION['user_currency'] = 'usd';
   }
-  return 'usd';
 }
 
+// Use currency from URL or session fallback
+$currency = $_GET['currency'] ?? $_SESSION['user_currency'] ?? 'usd';
+if (!in_array($currency, SUPPORTED)) $currency = 'usd';
 
 $rates = getRates();
-$currency = $_GET['currency'] ?? detectCurrencyFromIP();
-if (!in_array($currency, SUPPORTED)) $currency = 'usd';
+
 
 $symbolMap = [
   'usd' => '$', 'inr' => '₹', 'eur' => '€', 'gbp' => '£', 'aud' => 'A$', 'cad' => 'C$',

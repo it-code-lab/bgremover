@@ -74,6 +74,7 @@ if (!isset($_SESSION['user_id'])) {
       </form>
     </div>
   </div>
+  <script src="header.js"></script>
 </body>
 
 </html>
