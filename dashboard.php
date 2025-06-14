@@ -103,7 +103,7 @@ $firstName = $_SESSION['first_name'] ?? 'User';
               <tr>
                 <td><?= date("M d, Y H:i", strtotime($txn['created_at'])) ?></td>
                 <td><?= $txn['credits_added'] ?></td>
-                <td>$<?= number_format($txn['amount_paid'], 2) ?></td>
+                <td><?= number_format($txn['amount_paid'], 2) ?></td>
                 <td><?= strtoupper($txn['currency']) ?></td>
                 <td style="word-break: break-all;"><?= substr($txn['session_id'], 0, 20) . '...' ?></td>
               </tr>
