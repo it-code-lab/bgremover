@@ -1,6 +1,11 @@
 <?php
 require 'vendor/autoload.php';
 require_once 'db.php';
+
+require_once __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 
 if (!isset($_SESSION['user_id']) || !isset($_GET['session_id'])) {
@@ -8,7 +13,7 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['session_id'])) {
     exit();
 }
 
-$stripe = new \Stripe\StripeClient('sk_test_51KQJ0wHYpvIFwCYEZw0SqDuSt9jvXAArlPaDI7GxwAaiNJyfgPEGNbyi8CKYx9YT2S3ZiZoHB4ilxuq6XsbdJBfP00cpwvugQ8');
+$stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_KEY']);
 
 try {
     $session = $stripe->checkout->sessions->retrieve($_GET['session_id']);

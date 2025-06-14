@@ -11,9 +11,15 @@
   <?php
   require 'vendor/autoload.php';
   require_once 'db.php';
+
+  require_once __DIR__ . '/vendor/autoload.php';
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+  $dotenv->load();
+
+
   session_start();
 
-  \Stripe\Stripe::setApiKey("sk_test_51KQJ0wHYpvIFwCYEZw0SqDuSt9jvXAArlPaDI7GxwAaiNJyfgPEGNbyi8CKYx9YT2S3ZiZoHB4ilxuq6XsbdJBfP00cpwvugQ8");
+  \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
   $session = \Stripe\Checkout\Session::create([
     'payment_method_types' => ['card'],

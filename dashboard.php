@@ -43,6 +43,12 @@ if (!isset($_SESSION['user_id'])) {
     </form>
 
     <div id="result"></div>
+    <?php if ($credits == 0): ?>
+      <div class="ad-container">
+        <!-- Your AdSense code -->
+        <script>/* Ad code here */</script>
+      </div>
+    <?php endif; ?>
 
   </div>
 
