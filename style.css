@@ -30,12 +30,7 @@ header.scrolled {
   background-color: #343a40;
 }
 
-.logo {
-  color: #fff;
-  font-size: 26px;
-  font-weight: bold;
-  position: absolute;
-}
+
 
 .menu-toggle {
   display: none;
@@ -62,7 +57,8 @@ nav ul li {
   position: relative;
 }
 
-nav ul li a {
+
+nav ul li a, .logo a {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
@@ -71,8 +67,19 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, .logo a:hover {
   color: #00bcd4;
+}
+
+.logo{
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  position: absolute;
+}
+
+.logo a{
+  font-size: 26px;
 }
 
 /* Dropdown */
@@ -217,4 +224,28 @@ nav ul li:hover .user-dropdown {
   width: 250px;
   text-align: center;
   font-size: 18px;
+}
+.alert {
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  text-align: center;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-success {
+  background-color: #e6ffed;
+  color: #218838;
+  border: 1px solid #b8f1c2;
+}
+
+.alert-error {
+  background-color: #ffe6e6;
+  color: #c82333;
+  border: 1px solid #f5c6cb;
 }

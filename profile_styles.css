@@ -66,27 +66,3 @@
   border: 2px solid #dc3545;
 }
 
-.alert {
-  padding: 15px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 25px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.alert-success {
-  background-color: #e6ffed;
-  color: #218838;
-  border: 1px solid #b8f1c2;
-}
-
-.alert-error {
-  background-color: #ffe6e6;
-  color: #c82333;
-  border: 1px solid #f5c6cb;
-}
