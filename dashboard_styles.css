@@ -17,7 +17,7 @@
 
 .dashboard-container a {
   display: inline-block;
-  margin: 10px 10px 20px;
+  margin: 10px 10px 10px;
   color: #007BFF;
   font-weight: bold;
   text-decoration: none;
@@ -65,7 +65,7 @@
 .credit-summary {
   font-size: 18px;
   color: #333;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   text-align: center;
 }
 

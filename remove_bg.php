@@ -27,13 +27,13 @@ $is_free_mode = ($credits == 0);
 if ($is_free_mode) {
     $today = date('Y-m-d');
 
-    // Count today's usage
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ?");
+    // Count today's free usage
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? and usage_type = 'free'");
     $stmt->execute([$user_id, $today]);
     $daily_usage = $stmt->fetchColumn();
 
-    // Count total usage
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ?");
+    // Count total free usage
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? and usage_type = 'free' ");
     $stmt->execute([$user_id]);
     $total_usage = $stmt->fetchColumn();
 
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && (!$is_fr
         echo $image_data;
 
         // Optional: Log usage
-        $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at) VALUES (?, NOW())");
+        $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at, usage_type) VALUES (?, NOW(),'paid')");
         $stmt->execute([$user_id]);
     } else {
         http_response_code(500);
@@ -180,9 +180,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $is_free
     $imageUrls = $matches[1];
 
     if (count($imageUrls) >= 2) {
-        $finalUrl = $imageUrls[0]; // Usually first is result image
+        $finalUrl = $imageUrls[0]; // Usually first is result image ??
         header("Content-Type: image/png");
         echo file_get_contents($finalUrl);
+        // Optional: Log usage
+        $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at) VALUES (?, NOW())");
+        $stmt->execute([$user_id]);
+
     } else {
         http_response_code(500);
         echo "Failed to extract image from Hugging Face response.";

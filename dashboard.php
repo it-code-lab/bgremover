@@ -10,6 +10,24 @@ require_once 'db.php';
 $credits = $_SESSION['credits'] ?? 0;
 // $freeUses = $_SESSION['free_uses_today'] ?? 0;
 $firstName = $_SESSION['first_name'] ?? 'User';
+$user_id = $_SESSION['user_id'] ?? null;
+
+$today = date('Y-m-d');
+// Count today's free usage
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? and usage_type = 'free'");
+$stmt->execute([$user_id, $today]);
+$daily_usage = $stmt->fetchColumn();
+
+// Count total free usage
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? and usage_type = 'free' ");
+$stmt->execute([$user_id]);
+$total_usage = $stmt->fetchColumn();
+
+$remaining_free_uses = 3 - $daily_usage;
+
+if ($remaining_free_uses > (10 - $total_usage)) {
+  $remaining_free_uses = 10- $total_usage;
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,9 +67,9 @@ $firstName = $_SESSION['first_name'] ?? 'User';
       <div class="credit-summary">
         You have <strong><?= $credits ?></strong> credits remaining.
       </div>
-      <!-- <div class="usage-stats">
-      Today’s usage: <strong><?= $freeUses ?> / 3</strong> free background removals used
-    </div> -->
+      <div class="usage-stats">
+      Today’s free usage available: <strong><?= $remaining_free_uses ?> </strong> 
+      </div>
 
       <a href="pricing.php" class="cta-button">Buy More Credits</a>
 
