@@ -16,6 +16,8 @@ if ($user && password_verify($_POST['password'], $user['password'])) {
   $_SESSION['first_name'] = $user['first_name'];
   $_SESSION['last_name'] = $user['last_name'];
   $_SESSION['email'] = $user['email']; // Optional if still needed internally
+  $_SESSION['credits'] = $user['credits'];
+  $_SESSION['credits'] = $user['credits'];
 
   $redirectTo = isset($_SESSION['redirect_after_login']) ? $_SESSION['redirect_after_login'] : 'dashboard.php';
   unset($_SESSION['redirect_after_login']);

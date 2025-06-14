@@ -8,7 +8,7 @@ require_once 'db.php';
 
 // Safe defaults
 $credits = $_SESSION['credits'] ?? 0;
-$freeUses = $_SESSION['free_uses_today'] ?? 0;
+// $freeUses = $_SESSION['free_uses_today'] ?? 0;
 $firstName = $_SESSION['first_name'] ?? 'User';
 ?>
 <!DOCTYPE html>
@@ -41,11 +41,11 @@ $firstName = $_SESSION['first_name'] ?? 'User';
     <div class="credit-summary">
       You have <strong><?= $credits ?></strong> credits remaining.
     </div>
-    <div class="usage-stats">
+    <!-- <div class="usage-stats">
       Today’s usage: <strong><?= $freeUses ?> / 3</strong> free background removals used
-    </div>
+    </div> -->
 
-    <a href="buy_credits.php" class="cta-button">Buy More Credits</a>
+    <a href="pricing.php" class="cta-button">Buy More Credits</a>
 
     <form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
       <input type="file" name="image" id="imageInput" required>
