@@ -3,19 +3,28 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <?php include("components/header.php"); ?>
   <main>
     <section class='hero'>
       <h1>Remove Backgrounds with 1 Click</h1>
       <p>Upload your image and get a transparent background in seconds.</p>
-      <a class='cta-button' href='register.php'>Get Started Free</a>
+
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <a class='cta-button' href='dashboard.php'>Remove Background Now</a>
+      <?php else: ?>
+        <a class='cta-button' href='register.php'>Get Started Free</a>
+      <?php endif; ?>
+
     </section>
+
     <section class='features'>
       <h2>Why Choose Us?</h2>
       <ul>
@@ -25,8 +34,9 @@ session_start();
         <li>🔒 Secure & Private</li>
       </ul>
     </section>
-    </main>
-    <script src="header.js"></script>
+  </main>
 
+  <script src="header.js"></script>
 </body>
+
 </html>
