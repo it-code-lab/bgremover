@@ -29,7 +29,8 @@
 
       <?php if (isset($_GET['signup']) && $_GET['signup'] === 'success'): ?>
         <div class="alert alert-success">
-          ✅ Your account has been created. Please log in to continue.
+          ✅ Your account has been created. Please check your email and verify your account before logging in.
+
         </div>
       <?php endif; ?>
       <?php if (isset($_GET['verified'])): ?>
