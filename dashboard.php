@@ -99,6 +99,7 @@ $firstName = $_SESSION['first_name'] ?? 'User';
 </div>
 
 <script src="script.js"></script>
+<script src="header.js"></script>
 <script>
   const buttons = document.querySelectorAll(".tab-button");
   const contents = document.querySelectorAll(".tab-content");
