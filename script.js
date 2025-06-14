@@ -10,6 +10,16 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     body: formData,
   });
 
+  //DND - Uncomment the following lines to log the response details
+  // console.log("Response status:", response.status);
+  // console.log("Response headers:", response.headers); 
+  // console.log("Response URL:", response.url);
+  // console.log("Response type:", response.type);
+  // console.log("Response ok:", response.ok);
+  // console.log("Response redirected:", response.redirected);
+  // console.log("Response status text:", response.statusText);
+ 
+
   if (!response.ok) {
     const err = await response.json();
     if (err.redirect) {
