@@ -16,14 +16,14 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-
+  <?php include("components/header.php"); ?>
   <?php if (isset($_GET['credits']) && $_GET['credits'] === 'added'): ?>
     <div class="alert alert-success">
       🎉 Credits added successfully! You can now remove more backgrounds.
     </div>
   <?php endif; ?>
 
-  <?php include("components/header.php"); ?>
+
   <div class="dashboard-container">
     <h2>Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?></h2>
 
