@@ -37,9 +37,13 @@ if ($is_free_mode) {
 
     if ($daily_usage >= 3 || $total_usage >= 10) {
         http_response_code(429);
-        echo json_encode(["error" => "Free usage limit reached. Please upgrade for more."]);
-        exit();
+        echo json_encode([
+            "error" => "Usage limit reached. Please upgrade for more.",
+            "redirect" => "dashboard.php?error=freeusageexceeded"
+        ]);
+        exit;
     }
+
 }
 
 // Log the usage

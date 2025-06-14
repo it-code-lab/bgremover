@@ -24,6 +24,12 @@ $firstName = $_SESSION['first_name'] ?? 'User';
 <body>
   <?php include("components/header.php"); ?>
 
+  <?php if (isset($_GET['error']) && $_GET['error'] === 'freeusageexceeded'): ?>
+    <div class="alert alert-error">
+      ⚠ Free usage limit exceeded.
+    </div>
+  <?php endif; ?>
+
   <?php if (isset($_GET['credits']) && $_GET['credits'] === 'added'): ?>
     <div class="alert alert-success">
       🎉 Credits added successfully! You can now remove more backgrounds.
@@ -51,8 +57,15 @@ $firstName = $_SESSION['first_name'] ?? 'User';
 
       <form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
         <input type="file" name="image" id="imageInput" required>
+        <!-- Inside #remover tab before or after #result -->
+        <div class="preview-container" style="margin-top: 20px; text-align: center;">
+          <img id="previewImage" src=""
+            style="max-width: 100%; max-height: 300px; display: none; border: 1px solid #ccc; border-radius: 8px;" />
+        </div>
+
         <button type="submit">Remove Background</button>
       </form>
+
 
       <div id="result"></div>
 
@@ -115,6 +128,26 @@ $firstName = $_SESSION['first_name'] ?? 'User';
         document.getElementById(btn.dataset.tab).classList.add("active");
       });
     });
+  </script>
+  <script>
+    // Image preview logic
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById('previewImage');
+
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
   </script>
 </body>
 

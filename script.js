@@ -10,6 +10,16 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     body: formData,
   });
 
+  if (!response.ok) {
+    const err = await response.json();
+    if (err.redirect) {
+      window.location.href = err.redirect;
+    } else {
+      alert(err.error || "An error occurred.");
+    }
+    return;
+  }
+
   const blob = await response.blob();
   const url = URL.createObjectURL(blob);
 
