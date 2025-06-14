@@ -20,7 +20,8 @@ try {
 
     if ($session && $session->payment_status === 'paid') {
         $user_id = $_SESSION['user_id'];
-        $credits = 20;
+        $credits = isset($session->metadata->credits) ? (int)$session->metadata->credits : 0;
+
         $amount = $session->amount_total / 100;
         $currency = strtoupper($session->currency);
 

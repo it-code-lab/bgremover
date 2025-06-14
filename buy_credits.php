@@ -41,6 +41,9 @@ $session = \Stripe\Checkout\Session::create([
     'mode' => 'payment',
     'success_url' => 'http://localhost/bgremover/success.php?session_id={CHECKOUT_SESSION_ID}&credits=' . $selectedPack,
     'cancel_url' => 'http://localhost/bgremover/dashboard.php',
+    'metadata' => [
+    'credits' => $selectedPack
+  ]
 ]);
 
 // Redirect to Stripe Checkout

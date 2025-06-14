@@ -41,7 +41,7 @@ session_start();
             <li>✓ Never expires</li>
           </ul>
           <div class="price">$5</div>
-          <a href="buy_credits.php?pack=starter" class="buy-btn">Buy Now</a>
+          <a href="buy_credits.php?pack=20" class="buy-btn">Buy Now</a>
         </div>
 
         <!-- Pro Pack -->
@@ -53,7 +53,7 @@ session_start();
             <li>✓ Never expires</li>
           </ul>
           <div class="price">$20</div>
-          <a href="buy_credits.php?pack=pro" class="buy-btn">Buy Now</a>
+          <a href="buy_credits.php?pack=100" class="buy-btn">Buy Now</a>
         </div>
       </div>
     </section>
