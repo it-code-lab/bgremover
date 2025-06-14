@@ -18,13 +18,22 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
   <div class="profile-container">
+
+
+    <h2>Your Profile</h2>
+
     <?php if (isset($_GET['updated'])): ?>
       <div class="alert-success">
         ✅ Profile updated successfully!
       </div>
     <?php endif; ?>
 
-    <h2>Your Profile</h2>
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'password_incorrect'): ?>
+      <div class="alert-error">
+        ❌ Current password is incorrect.
+      </div>
+    <?php endif; ?>
+
 
     <div class="profile-section">
       <h3>Personal Info</h3>
@@ -44,12 +53,15 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="profile-section">
       <h3>Change Password</h3>
+
       <form action="change_password.php" method="POST">
         <label>Current Password</label>
-        <input type="password" name="current_password" required>
+        <input type="password" name="current_password" 
+  class="<?= isset($_GET['error']) ? 'input-error' : '' ?>" autocomplete="off" required>
+
 
         <label>New Password</label>
-        <input type="password" name="new_password" required>
+        <input type="password" name="new_password" autocomplete="off" required>
 
         <button type="submit">Change Password</button>
       </form>

@@ -71,3 +71,18 @@
   text-align: center;
   font-weight: 500;
 }
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.input-error {
+  border: 2px solid #dc3545;
+}
