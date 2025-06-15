@@ -24,7 +24,7 @@ function sendVerificationEmail($email, $first_name, $token) {
         </html>
     ";
 
-    $headers = "From: CleanPix <no-reply@bgremover.com>\r\n";
+    $headers = "From: CleanPix <no-reply@cleanpix.readernook.com>\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
@@ -54,7 +54,7 @@ function sendPasswordResetEmail($email, $token) {
         </html>
     ";
 
-    $headers = "From: CleanPix <no-reply@bgremover.com>\r\n";
+    $headers = "From: CleanPix <no-reply@cleanpix.readernook.com>\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 

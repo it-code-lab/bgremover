@@ -9,6 +9,7 @@ $user = $stmt->fetch();
 if (!$user['is_verified']) {
   // die("Please verify your email before logging in.");
   header("Location: login.php?error=unverified");
+  exit();
 }
 
 if ($user && password_verify($_POST['password'], $user['password'])) {
