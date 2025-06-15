@@ -57,6 +57,8 @@ $session = \Stripe\Checkout\Session::create([
         'quantity' => 1,
     ]],
     'mode' => 'payment',
+    // 'success_url' => 'https://cleanpix.readernook.com/success.php?session_id={CHECKOUT_SESSION_ID}&credits=' . $selectedPack,
+    // 'cancel_url' => 'https://cleanpix.readernook.com/dashboard.php',
     'success_url' => 'http://localhost/bgremover/success.php?session_id={CHECKOUT_SESSION_ID}&credits=' . $selectedPack,
     'cancel_url' => 'http://localhost/bgremover/dashboard.php',
     'metadata' => [
