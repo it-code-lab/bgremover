@@ -31,7 +31,7 @@ function sendVerificationEmail($email, $first_name, $token) {
     return mail($email, $subject, $htmlMessage, $headers);
 }
 
-function sendPasswordResetEmail($email, $token) {
+function sendPasswordResetEmail($email, $token, $first_name = "User") {
     $reset_link = "http://localhost/bgremover/reset_password.php?token=" . urlencode($token);
     $subject = "Reset Your CleanPix Password";
 
@@ -42,7 +42,7 @@ function sendPasswordResetEmail($email, $token) {
         </head>
         <body style='font-family: Arial, sans-serif;'>
             <h2>Password Reset Requested</h2>
-            <p>We received a request to reset your password for your <strong>CleanPix</strong> account.</p>
+            <p>Hi $first_name,\n\nWe received a request to reset your password for your <strong>CleanPix</strong> account.</p>
             <p>
                 <a href=\"$reset_link\" style='display: inline-block; background-color: #FF5722; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Reset Password</a>
             </p>
