@@ -52,16 +52,9 @@ $proPrice = round(20 * $rates[$currency], 2);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Pricing</title>
-  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
-  <meta name="robots" content="index, follow">
-
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pricing_styles.css">
+  <?php include 'head-main.html'; ?>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>

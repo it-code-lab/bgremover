@@ -41,16 +41,9 @@ if ($remaining_free_uses > (10 - $total_usage)) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard_styles.css">
-  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
-  <meta name="robots" content="index, follow">
-
+  <?php include 'head-main.html'; ?>
 </head>
 
 <body>

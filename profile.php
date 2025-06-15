@@ -9,20 +9,13 @@ if (!isset($_SESSION['user_id'])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
-  <meta name="robots" content="index, follow">
-
-  <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Profile</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="profile_styles.css">
-  <?php include("components/header.php"); ?>
+  <?php include 'head-main.html'; ?>
 </head>
 
 <body>
+  <?php include("components/header.php"); ?>
   <div class="profile-container">
 
 
