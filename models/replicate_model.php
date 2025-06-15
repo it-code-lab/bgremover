@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 function process_with_replicate($imagePath, $user_id)
 {
     global $pdo;
@@ -11,9 +12,12 @@ function process_with_replicate($imagePath, $user_id)
     ];
 
     //DND
-    //$api_token = getenv('REPLICATE_API_KEY'); // or $_ENV['REPLICATE_API_KEY']
+    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+    $dotenv->load();
 
-    $api_token = ""; // Set your Replicate token here
+    $api_token = $_ENV['REPLICATE_API_KEY'] ;
+
+    //$api_token = ""; // Set your Replicate token here
     $ch = curl_init("https://api.replicate.com/v1/predictions");
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
@@ -43,6 +47,7 @@ function process_with_replicate($imagePath, $user_id)
         echo "No output URL returned from Replicate.";
         exit;
     }
+    //error_log("Replicate output URL: " . $output_url);
 
     $image_data = file_get_contents($output_url);
     if ($image_data) {
@@ -55,7 +60,7 @@ function process_with_replicate($imagePath, $user_id)
         //Reduce the credit count by 1
         $stmt = $pdo->prepare("UPDATE users SET credits = credits - 1 WHERE id = ?");
         $stmt->execute([$user_id]);
-        
+
         header("Content-Type: application/json");
         echo json_encode([
             "image_base64" => base64_encode($image_data),
