@@ -10,6 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
+  <meta name="robots" content="index, follow">
+
   <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Profile</title>
   <link rel="stylesheet" href="style.css">

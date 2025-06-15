@@ -38,6 +38,9 @@ if ($remaining_free_uses > (10 - $total_usage)) {
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard_styles.css">
+  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
+  <meta name="robots" content="index, follow">
+
 </head>
 
 <body>

@@ -53,6 +53,9 @@ $proPrice = round(20 * $rates[$currency], 2);
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/BGREMOVER/images/icon.png">
   <title>Pricing</title>
+  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
+  <meta name="robots" content="index, follow">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pricing_styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">

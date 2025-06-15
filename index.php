@@ -9,6 +9,8 @@ session_start();
   <meta charset="UTF-8">
   <title>Home</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
+  <meta name="robots" content="index, follow">
 </head>
 
 <body>
