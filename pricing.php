@@ -4,7 +4,9 @@ require_once 'conversion.php';
 // Only fetch IP-based currency if not already stored
 if (!isset($_SESSION['user_currency'])) {
   $ip = $_SERVER['REMOTE_ADDR'];
-  $response = @file_get_contents("https://ipapi.co/{$ip}/json/");
+  //DND
+  //$response = @file_get_contents("https://ipapi.co/{$ip}/json/");
+  $response = "";
   if ($response) {
     $data = json_decode($response, true);
     $countryCode = strtoupper($data['country'] ?? '');
@@ -30,8 +32,8 @@ $rates = getRates();
 $symbolMap = [
   'usd' => '$', 'inr' => '₹', 'eur' => '€', 'gbp' => '£', 'aud' => 'A$', 'cad' => 'C$',
   'jpy' => '¥', 'sgd' => 'S$', 'nzd' => 'NZ$', 'zar' => 'R', 'brl' => 'R$', 'mxn' => 'MX$',
-  'php' => '₱', 'aed' => 'د.إ', 'hkd' => 'HK$', 'myr' => 'RM', 'chf' => 'CHF',
-  'sek' => 'kr', 'dkk' => 'kr', 'nok' => 'kr'
+   'aed' => 'د.إ', 'hkd' => 'HK$', 'chf' => 'CHF',
+  'sek' => 'kr',  'nok' => 'kr'
 ];
 
 $conversionRates = [
