@@ -1,9 +1,9 @@
 <?php
-function process_with_u2net($imagePath, $user_id)
+function process_with_replicate($imagePath, $user_id)
 {
     global $pdo;
     //Reference:https://replicate.com/851-labs/background-remover/api
-    
+
     $base64 = base64_encode(file_get_contents($imagePath));
     $data = [
         "version" => "a029dff38972b5fda4ec5d75d7d1cd25aeff621d2cf4946a41055d7db66b80bc",
@@ -46,11 +46,20 @@ function process_with_u2net($imagePath, $user_id)
 
     $image_data = file_get_contents($output_url);
     if ($image_data) {
-        header("Content-Type: image/png");
-        echo $image_data;
+        // header("Content-Type: image/png");
+        // echo $image_data;
 
         $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at, usage_type) VALUES (?, NOW(), 'paid')");
         $stmt->execute([$user_id]);
+
+        header("Content-Type: application/json");
+        echo json_encode([
+            "image_base64" => base64_encode($image_data),
+            "credits" => get_user_credits($user_id),
+            "remaining_free_uses" => get_remaining_free_usage_for_today($user_id)
+        ]);
+
+
     } else {
         http_response_code(500);
         echo "Error fetching output image.";

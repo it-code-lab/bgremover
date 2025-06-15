@@ -41,14 +41,40 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
       return;
     }
 
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    //   const blob = await response.blob();
+    //   const url = URL.createObjectURL(blob);
 
-    document.getElementById("result").innerHTML = `
-    <h3>Result:</h3>
-    <img src="${url}" alt="Background Removed" style="max-width: 300px;" />
-    <br/><a href="${url}" download="no_bg.png">Download PNG</a>
-  `;
+    //   document.getElementById("result").innerHTML = `
+    //   <h3>Result:</h3>
+    //   <img src="${url}" alt="Background Removed" style="max-width: 300px;" />
+    //   <br/><a href="${url}" download="no_bg.png">Download PNG</a>
+    // `;
+
+    const result = await response.json();
+
+    // Show image
+    const resultImage = document.createElement("img");
+    resultImage.src = "data:image/png;base64," + result.image_base64;
+    resultImage.style.maxWidth = "300px";
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").appendChild(resultImage);
+
+    // Download link
+    const downloadLink = document.createElement("a");
+    downloadLink.href = resultImage.src;
+    downloadLink.download = "no_bg.png";
+    downloadLink.textContent = "Download PNG";
+    document.getElementById("result").appendChild(document.createElement("br"));
+    document.getElementById("result").appendChild(downloadLink);
+
+    // Update credits or free usage text
+    if (result.credits !== null) {
+      document.querySelector(".credit-summary strong").textContent = result.credits;
+    }
+    if (result.remaining_free_uses !== null) {
+      document.querySelector(".usage-stats strong").textContent = result.remaining_free_uses;
+    }
+
   } catch (error) {
     alert("Failed to process image: " + err.message);
   } finally {

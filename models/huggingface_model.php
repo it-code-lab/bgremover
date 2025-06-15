@@ -53,11 +53,20 @@ function process_with_huggingface($imagePath, $user_id)
 
     if (count($imageUrls) >= 1) {
         $finalUrl = $imageUrls[0]; // Usually first is result image ??
-        header("Content-Type: image/png");
-        echo file_get_contents($finalUrl);
+        // header("Content-Type: image/png");
+        // echo file_get_contents($finalUrl);
 
         $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at, usage_type) VALUES (?, NOW(), 'free')");
         $stmt->execute([$user_id]);
+
+        header("Content-Type: application/json");
+        echo json_encode([
+            "image_base64" => base64_encode(file_get_contents($finalUrl)),
+            "credits" => get_user_credits($user_id),
+            "remaining_free_uses" => get_remaining_free_usage_for_today($user_id)
+        ]);
+
+
     } else {
         http_response_code(500);
         echo "Failed to extract image from Hugging Face response.";

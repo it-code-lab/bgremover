@@ -15,6 +15,32 @@ if (!function_exists('get_user_credits')) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? (int) $result['credits'] : 0;
     }
+
+    function get_remaining_free_usage_for_today($user_id)
+    {
+        global $pdo;
+        if (!$user_id) return 0;
+
+        $today = date('Y-m-d');
+
+        // Count how many time free usage was used today
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? AND usage_type = 'free'");
+        $stmt->execute([$user_id, $today]);
+        $daily_usage = (int) $stmt->fetchColumn();
+
+        // Count total free usage used so far
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? and usage_type = 'free' ");
+        $stmt->execute([$user_id]);
+        $total_usage = $stmt->fetchColumn();
+
+        $remaining_free_uses_for_today = 3 - $daily_usage;
+
+        if ($remaining_free_uses_for_today > (10 - $total_usage)) {
+            $remaining_free_uses_for_today = 10 - $total_usage;
+        }
+
+        return $remaining_free_uses_for_today;
+    }
 }
 
 $credits = get_user_credits($user_id);
@@ -47,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         process_with_huggingface($imagePath, $user_id);
 
     } else {
-        include 'models/u2net_model.php';
-        process_with_u2net($imagePath, $user_id);
+        include 'models/replicate_model.php';
+        process_with_replicate($imagePath, $user_id);
     }
 
 } else {
