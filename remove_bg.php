@@ -3,6 +3,20 @@
 session_start();
 require_once 'db.php';
 
+// Delete old files from uploads folder
+$uploadDir = 'uploads/';
+$files = glob($uploadDir . '*');
+$now = time();
+
+foreach ($files as $file) {
+    if (is_file($file)) {
+        $modifiedTime = filemtime($file);
+        if ($now - $modifiedTime > 3600) {
+            unlink($file);
+        }
+    }
+}
+
 $user_id = $_SESSION['user_id'] ?? null;
 
 if (!function_exists('get_user_credits')) {
@@ -46,37 +60,49 @@ if (!function_exists('get_user_credits')) {
 $credits = get_user_credits($user_id);
 $is_free_mode = ($credits == 0);
 
+$originalName = basename($_FILES['image']['name']);
+$extension = pathinfo($originalName, PATHINFO_EXTENSION);
+$targetDir = 'uploads/';
+if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
+$targetPath = $targetDir . uniqid('img_', true) . '.' . $extension;
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
-    $imagePath = $_FILES['image']['tmp_name'];
+    // $imagePath = $_FILES['image']['tmp_name'];
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+        if ($is_free_mode) {
+            $today = date('Y-m-d');
 
-    if ($is_free_mode) {
-        $today = date('Y-m-d');
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? and usage_type = 'free'");
+            $stmt->execute([$user_id, $today]);
+            $daily_usage = $stmt->fetchColumn();
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? and usage_type = 'free'");
-        $stmt->execute([$user_id, $today]);
-        $daily_usage = $stmt->fetchColumn();
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? and usage_type = 'free'");
+            $stmt->execute([$user_id]);
+            $total_usage = $stmt->fetchColumn();
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? and usage_type = 'free'");
-        $stmt->execute([$user_id]);
-        $total_usage = $stmt->fetchColumn();
+            if ($daily_usage >= 3 || $total_usage >= 10) {
+                http_response_code(429);
+                echo json_encode([
+                    "error" => "Usage limit reached. Please upgrade for more.",
+                    "redirect" => "dashboard.php?error=freeusageexceeded"
+                ]);
+                exit;
+            }
 
-        if ($daily_usage >= 3 || $total_usage >= 10) {
-            http_response_code(429);
-            echo json_encode([
-                "error" => "Usage limit reached. Please upgrade for more.",
-                "redirect" => "dashboard.php?error=freeusageexceeded"
-            ]);
-            exit;
+            include 'models/huggingface_model.php';
+            process_with_huggingface($targetPath, $user_id);
+
+        } else {
+            // include 'models/huggingface_model.php';
+            // process_with_huggingface($targetPath, $user_id);            
+            include 'models/replicate_model.php';
+            process_with_replicate($targetPath, $user_id);
         }
-
-        include 'models/huggingface_model.php';
-        process_with_huggingface($imagePath, $user_id);
-
     } else {
-        include 'models/replicate_model.php';
-        process_with_replicate($imagePath, $user_id);
+        http_response_code(500);
+        echo json_encode(["error" => "Failed to move uploaded file."]);
     }
-
 } else {
     http_response_code(400);
     echo "No image uploaded.";

@@ -8,9 +8,11 @@ function process_with_huggingface($imagePath, $user_id)
 
     //Upload to temporary public storage for Hugging Face (e.g., tmpfiles.org or your server if public)
     //DND
-    //$upload_url = uploadToTempServer($imagePath);
+    //error_log($imagePath);
+    $upload_url = uploadToTempServer($imagePath);
+    //error_log($upload_url);
 
-    $upload_url = "https://i.pinimg.com/736x/a8/34/e6/a834e6b7be8a10d045b84654543bbcba.jpg"; // Replace with real upload logic
+    //$upload_url = "https://i.pinimg.com/736x/a8/34/e6/a834e6b7be8a10d045b84654543bbcba.jpg"; // Replace with real upload logic
 
     if (!$upload_url) {
         http_response_code(500);
@@ -89,8 +91,9 @@ function uploadToTempServer($imagePath)
     curl_close($ch);
 
     $json = json_decode($result, true);
+    //error_log("Upload response: " . print_r($json, true));
     if (isset($json['data']['url'])) {
-        return $json['data']['url'];
+        return str_replace('tmpfiles.org', 'tmpfiles.org/dl', $json['data']['url']);
     }
 
     return null;
