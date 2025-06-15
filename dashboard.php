@@ -95,8 +95,9 @@ if ($remaining_free_uses > (10 - $total_usage)) {
 
       <?php if ($credits == 0): ?>
         <div class="ad-container">
-          <p style="font-size: 0.9rem; color: #888;">🔔 Sponsored Message</p>
-          <p>[Place Ad Here]</p>
+          <!-- DND -- Uncomment to enable ad section -->
+          <!-- <p style="font-size: 0.9rem; color: #888;">🔔 Sponsored Message</p>
+          <p>[Place Ad Here]</p> -->
         </div>
       <?php endif; ?>
     </div>
