@@ -10,6 +10,7 @@
   <?php include("components/header.php"); ?>
   <?php
   require_once("db.php");
+  require_once 'mailer.php';
 
   $first = $_POST['first_name'];
   $last = $_POST['last_name'];
@@ -22,13 +23,15 @@
     $stmt->execute([$first, $last, $email, $password, $token]);
 
     // Send verification email
-    $verify_link = "http://localhost/bgremover/verify_email.php?token=$token";
-    $subject = "Verify Your CleanPix Account";
-    $message = "Hi $first_name,\n\nClick the link below to verify your account:\n$verify_link";
-    $headers = "From: no-reply@bgremover.com";
+    // $verify_link = "http://localhost/bgremover/verify_email.php?token=$token";
+    // $subject = "Verify Your CleanPix Account";
+    // $message = "Hi $first_name,\n\nClick the link below to verify your account:\n$verify_link";
+    // $headers = "From: no-reply@bgremover.com";
+
+    sendVerificationEmail($email, $first_name, $token);
 
     // Uncomment this when mail is working
-// mail($email, $subject, $message, $headers);
+    // mail($email, $subject, $message, $headers);
   
       
     // echo "Please verify your account: <a href='verify.php?token=$token'>Click to verify</a>";

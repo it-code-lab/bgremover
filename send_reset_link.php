@@ -8,6 +8,7 @@
     <?php include("components/header.php"); ?>
 <?php
 require_once("db.php");
+require_once 'mailer.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -25,15 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$token, $expires_at, $email]);
 
         // Email reset link
-        $reset_link = "http://localhost/bgremover/reset_password.php?token=$token";
-
-        // Send the email (using mail() or display for dev)
-        $subject = "Password Reset Request";
-        $message = "Click the link below to reset your password:\n$reset_link";
-        $headers = "From: no-reply@bgremover.com";
+        // $reset_link = "http://localhost/bgremover/reset_password.php?token=$token";
+        // $subject = "Password Reset Request";
+        // $message = "Click the link below to reset your password:\n$reset_link";
+        // $headers = "From: no-reply@bgremover.com";
 
         // Uncomment this when mail is configured:
         // mail($email, $subject, $message, $headers);
+        sendPasswordResetEmail($email, $token);
 
         echo "Reset link has been sent to your email.<br><a href='$reset_link'>[Dev: Click here to test]</a>";
     } else {
