@@ -6,13 +6,21 @@ if (!isset($_SESSION['user_id'])) {
 }
 require_once 'db.php';
 
-// Safe defaults
-$credits = $_SESSION['credits'] ?? 0;
+
+
+
 // $freeUses = $_SESSION['free_uses_today'] ?? 0;
 $firstName = $_SESSION['first_name'] ?? 'User';
 $user_id = $_SESSION['user_id'] ?? null;
 
 $today = date('Y-m-d');
+
+//$credits = $_SESSION['credits'] ?? 0;
+
+$stmt = $pdo->prepare("SELECT credits FROM users WHERE id = ?");
+$stmt->execute([ $user_id]);
+$credits = $stmt->fetchColumn();
+
 // Count today's free usage
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM usage_log WHERE user_id = ? AND DATE(used_at) = ? and usage_type = 'free'");
 $stmt->execute([$user_id, $today]);
