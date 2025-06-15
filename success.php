@@ -35,10 +35,16 @@ try {
         throw new Exception("Payment amount does not match expected price. Contact support.");
     }
 
-    // Update user credits
+    // Update user credits in DB
     $stmt = $pdo->prepare("UPDATE users SET credits = credits + ?, last_credit_purchased = NOW() WHERE id = ?");
     $stmt->execute([$credits, $user_id]);
 
+    // Get the latest credit from DB and update session metadata
+    $stmt = $pdo->prepare("SELECT credits FROM users WHERE id = ?");
+    $stmt->execute([ $user_id]);
+    $credit = $stmt->fetchColumn();
+    $_SESSION['credits'] = $credit;
+    
     // Record the transaction
     $txn = $pdo->prepare("INSERT INTO transactions (user_id, session_id, credits_added, amount_paid, currency) VALUES (?, ?, ?, ?, ?)");
     $txn->execute([$user_id, $session_id, $credits, $amount_paid, $currency]);
