@@ -61,6 +61,10 @@ function process_with_huggingface($imagePath, $user_id)
         $stmt = $pdo->prepare("INSERT INTO usage_log (user_id, used_at, usage_type) VALUES (?, NOW(), 'free')");
         $stmt->execute([$user_id]);
 
+        //For test only - Reduce the credit count by 1
+        // $stmt = $pdo->prepare("UPDATE users SET credits = credits - 1 WHERE id = ?");
+        // $stmt->execute([$user_id]);
+
         header("Content-Type: application/json");
         echo json_encode([
             "image_base64" => base64_encode(file_get_contents($finalUrl)),
