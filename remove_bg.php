@@ -245,9 +245,10 @@ function process_with_replicate($imagePath, $user_id, $usage_tp = 'paid')
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 
-    $api_token = $_ENV['REPLICATE_API_KEY'] ;
+    //DND - Temporary Change
+    //$api_token = $_ENV['REPLICATE_API_KEY'] ;
 
-    //$api_token = ""; // Set your Replicate token here
+    $api_token = ""; // Set your Replicate token here
     $ch = curl_init("https://api.replicate.com/v1/predictions");
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,

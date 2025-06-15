@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Remove background from images instantly. Free and paid versions available.">
   <meta name="robots" content="index, follow">
 
