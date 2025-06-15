@@ -26,8 +26,8 @@ $total_usage = $stmt->fetchColumn();
 $remaining_free_uses = 3 - $daily_usage;
 
 if ($remaining_free_uses > (10 - $total_usage)) {
-  $remaining_free_uses = 10- $total_usage;
-} 
+  $remaining_free_uses = 10 - $total_usage;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@ if ($remaining_free_uses > (10 - $total_usage)) {
         You have <strong><?= $credits ?></strong> credits remaining.
       </div>
       <div class="usage-stats">
-      Today’s free usage available: <strong><?= $remaining_free_uses ?> </strong> 
+        Today’s free usage available: <strong><?= $remaining_free_uses ?> </strong>
       </div>
 
       <a href="pricing.php" class="cta-button">Buy More Credits</a>
@@ -82,8 +82,13 @@ if ($remaining_free_uses > (10 - $total_usage)) {
             style="max-width: 100%; max-height: 300px; display: none; border: 1px solid #ccc; border-radius: 8px;" />
         </div>
 
-        <button type="submit">Remove Background</button>
+        <button type="submit" id="submitBtn">Remove Background</button>
       </form>
+
+      <div id="loader" style="display: none; text-align: center; margin-top: 20px;">
+        <div class="spinner"></div>
+        <p>Processing image, please wait...</p>
+      </div>
 
 
       <div id="result"></div>
