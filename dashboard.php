@@ -81,7 +81,7 @@ if ($remaining_free_uses > (10 - $total_usage)) {
       <a href="pricing.php" class="cta-button">Buy More Credits</a>
 
       <form id="uploadForm" class="dashboard-form" enctype="multipart/form-data">
-        <input type="file" name="image" id="imageInput" required>
+        <input type="file" name="image" id="imageInput" accept="image/*" required>
         <!-- Inside #remover tab before or after #result -->
         <div class="preview-container" style="margin-top: 20px; text-align: center;">
           <img id="previewImage" src=""
