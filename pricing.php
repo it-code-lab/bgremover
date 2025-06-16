@@ -47,7 +47,7 @@ $symbol = $symbolMap[$currency];
 // $rate = $conversionRates[$currency] ?? 1;
 
 $starterPrice = round(5 * $rates[$currency], 2);
-$proPrice = round(20 * $rates[$currency], 2);
+$proPrice = round(10 * $rates[$currency], 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,24 +95,24 @@ $proPrice = round(20 * $rates[$currency], 2);
         <div class="pricing-card">
           <h2 class="title">Starter Pack</h2>
           <ul>
-            <li>✓ 20 credits</li>
+            <li>✓ 50 credits</li>
             <li>✓ High-res, no watermark</li>
             <li>✓ Never expires</li>
           </ul>
           <div class="price"><?= $symbol . number_format($starterPrice, 2) ?></div>
-          <a href="buy_credits.php?pack=20&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
+          <a href="buy_credits.php?pack=50&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
         </div>
 
         <!-- Pro Pack -->
         <div class="pricing-card">
           <h2 class="title">Pro Pack</h2>
           <ul>
-            <li>✓ 100 credits</li>
+            <li>✓ 120 credits</li>
             <li>✓ High-res, no watermark</li>
             <li>✓ Never expires</li>
           </ul>
           <div class="price"><?= $symbol . number_format($proPrice, 2) ?></div>
-          <a href="buy_credits.php?pack=100&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
+          <a href="buy_credits.php?pack=120&currency=<?= $currency ?>" class="buy-btn">Buy Now</a>
         </div>
       </div>
     </section>

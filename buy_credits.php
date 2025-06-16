@@ -18,8 +18,8 @@ $dotenv->load();
 
 // Step 1: Define available credit packs in USD
 $creditPacks = [
-    20  => ['usd_price' => 5.00, 'label' => 'Credit Pack (20 images)'],
-    100 => ['usd_price' => 20.00, 'label' => 'Credit Pack (100 images)']
+    50  => ['usd_price' => 5.00, 'label' => 'Credit Pack (50 images)'],
+    120 => ['usd_price' => 10.00, 'label' => 'Credit Pack (120 images)']
 ];
 
 // Step 2: Validate selected pack
