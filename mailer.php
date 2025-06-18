@@ -62,8 +62,10 @@ function sendPasswordResetEmail($email, $token, $first_name = "User") {
 }
 
 function sendContactEmail($to, $name, $email, $message) {
+    $to = "mail2saurabhm@gmail.com";
     $subject = "Contact Form Submission from CleanPix";
     $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    $email = "CleanPixUser@cleanpix.readernook.com";
     $headers = "From: $email\r\n";
 
     return mail($to, $subject, $body, $headers);

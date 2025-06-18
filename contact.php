@@ -2,6 +2,7 @@
 session_start();
 ?>
 <?php
+
 $pageTitle = "Contact Us – CleanPix";
 $pageDescription = "Reach out to CleanPix with your questions, feedback, or support requests.";
 
@@ -25,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (strcasecmp($captcha, $storedCaptcha) !== 0) {
         $error = "Invalid CAPTCHA. Please try again.";
     } else {
+        require_once 'mailer.php';
         // Send email
         $to = "mail2kimim@gmail.com"; // Replace with your support email
         $headers = "From: $email";
@@ -114,9 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <?php include("components/header.php"); ?>
-    <?php
-    require_once 'mailer.php';
-    ?>
+
     <main class="contact-form">
         <h1>Contact Us</h1>
 
