@@ -1,11 +1,9 @@
-<?php
-$pageTitle = "Terms of Service – CleanPix";
-$pageDescription = "Review the terms and conditions that govern your use of CleanPix, including acceptable use, limitations, and refund policies.";
-include("components/header.php");
-?>
 
 <head>
-    <title>Home</title>
+    <title>Terms of Service – CleanPix</title>
+    <meta name="description" content="Read the Terms of Service for CleanPix, the AI-powered background removal service. Understand your rights and responsibilities when using our platform.">
+    <meta name="keywords" content="terms of service, CleanPix, background removal, AI service, user agreement">
+    <meta name="author" content="CleanPix Team">
     <?php include 'head-main.html'; ?>
 
     <style>
@@ -92,6 +90,7 @@ include("components/header.php");
 </head>
 
 <body>
+    <?php include("components/header.php"); ?>
     <main class="container" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
         <h1>Terms of Service</h1>
         <p>Last updated: <?= date("F d, Y") ?></p>

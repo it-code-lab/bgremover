@@ -1,9 +1,5 @@
-<?php
-$pageTitle = "How to Remove Backgrounds for eCommerce, Resumes, and More – CleanPix";
-$pageDescription = "Learn how to instantly remove image backgrounds using CleanPix for eCommerce, resumes, social media, and more. Try free today – no login required.";
-include("components/header.php");
-?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Home</title>
     <?php include 'head-main.html'; ?>
@@ -92,6 +88,7 @@ include("components/header.php");
 </head>
 
 <body>
+    <?php include("components/header.php"); ?>
     <main class="container" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
     <h1>Privacy Policy</h1>
     <p>Last updated: <?= date("F d, Y") ?></p>

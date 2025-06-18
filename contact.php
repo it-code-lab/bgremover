@@ -1,7 +1,9 @@
 <?php
+session_start();
+?>
+<?php
 $pageTitle = "Contact Us – CleanPix";
 $pageDescription = "Reach out to CleanPix with your questions, feedback, or support requests.";
-include("components/header.php");
 
 // Initialize variables
 $name = $email = $message = $captcha = "";
@@ -38,7 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <head>
-    <title>How to remove background</title>
+    <title>Contact Us</title>
+    <meta name="description" content="Reach out to CleanPix with your questions, feedback, or support requests.">
+    <meta name="keywords" content="contact, support, feedback, CleanPix">
     <?php include 'head-main.html'; ?>
     <style>
         .contact-form {
@@ -109,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <?php include("components/header.php"); ?>
     <?php
     require_once 'mailer.php';
     ?>

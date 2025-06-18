@@ -1,11 +1,11 @@
-<?php
-$pageTitle = "How to Remove Backgrounds for eCommerce, Resumes, and More – CleanPix";
-$pageDescription = "Learn how to instantly remove image backgrounds using CleanPix for eCommerce, resumes, social media, and more. Try free today – no login required.";
-include("components/header.php");
-?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <title>How to remove background</title>
+  <meta name="description" content="Learn how to instantly remove image backgrounds using CleanPix for eCommerce, resumes, social media, and more. Try free today – no credit card required.">
+  <meta name="keywords" content="remove background, eCommerce, resume, social media, CleanPix, AI background remover">
+  <meta name="author" content="CleanPix Team">
   <?php include 'head-main.html'; ?>
   <style>
     /* Base styling for blog container */
@@ -92,6 +92,7 @@ include("components/header.php");
 </head>
 
 <body>
+  <?php include("components/header.php"); ?>
   <main class="container" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
     <h1>🧼 How to Remove Backgrounds for eCommerce, Resumes, and More – In Seconds</h1>
 
