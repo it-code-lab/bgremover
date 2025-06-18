@@ -60,3 +60,11 @@ function sendPasswordResetEmail($email, $token, $first_name = "User") {
 
     return mail($email, $subject, $htmlMessage, $headers);
 }
+
+function sendContactEmail($to, $name, $email, $message) {
+    $subject = "Contact Form Submission from CleanPix";
+    $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    $headers = "From: $email\r\n";
+
+    return mail($to, $subject, $body, $headers);
+}

@@ -277,3 +277,14 @@ button:disabled {
   opacity: 0.6;
   pointer-events: none;
 }
+
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #1e40af !important;
+  text-decoration: underline !important;
+}

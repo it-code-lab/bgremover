@@ -34,7 +34,52 @@ session_start();
       </ul>
     </section>
   </main>
+  <section style="background-color: #f0f8ff; padding: 60px 20px;">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">Join Thousands of Happy Users</h2>
+      <p style="font-size: 1.1rem; color: #444; margin-bottom: 40px;">
+        We're proud to be helping people around the world create clean, professional images.
+      </p>
 
+      <div style="display: flex; justify-content: center;">
+        <div style="background: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.06);">
+          <h3 style="font-size: 2.2rem; color: #2563eb; margin: 0;">10,000+</h3>
+          <p style="margin: 8px 0 0;">Images Processed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background-color: #f9fafb; padding: 60px 20px;">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">What Our Users Say</h2>
+      <p style="font-size: 1.1rem; color: #444; margin-bottom: 40px;">
+        Trusted by creators, sellers, and professionals around the world.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+        <!-- Testimonial 1 -->
+        <div
+          style="flex: 1 1 250px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.06); text-align: left;">
+          <p style="font-style: italic;">“Super easy to use. I cleaned up product photos in seconds. Love that credits
+            never expire!”</p>
+          <div style="margin-top: 10px; font-weight: bold;">— Priya S.</div>
+          <div style="color: gold;">★★★★★</div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div
+          style="flex: 1 1 250px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.06); text-align: left;">
+          <p style="font-style: italic;">“No more subscriptions! CleanPix gives me exactly what I need—fast and
+            private.”</p>
+          <div style="margin-top: 10px; font-weight: bold;">— Mark T.</div>
+          <div style="color: gold;">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <?php include 'footer.php'; ?>
   <script src="header.js"></script>
 </body>
 
