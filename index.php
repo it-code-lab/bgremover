@@ -50,6 +50,37 @@ session_start();
     </div>
   </section>
 
+  <section style="background-color: #fff; padding: 60px 20px;">
+  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 30px;">How CleanPix Helps You Succeed</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+      <!-- Video 1 -->
+      <iframe width="360" height="215" src="https://www.youtube.com/embed/Sdp22LC-czc" 
+              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+              clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen></iframe>
+
+      <!-- Video 2 -->
+      <iframe width="360" height="215" src="https://www.youtube.com/embed/PDrCLnmudbs" 
+              frameborder="0" allowfullscreen></iframe>
+
+      <!-- Video 3 -->
+      <iframe width="360" height="215" src="https://www.youtube.com/embed/s3e9rOwseGw" 
+              frameborder="0" allowfullscreen></iframe>
+
+      <!-- Video 4 -->
+      <iframe width="360" height="215" src="https://www.youtube.com/embed/CZng5NghXDg" 
+              frameborder="0" allowfullscreen></iframe>
+
+
+      <!-- Video 5 -->
+      <iframe width="360" height="215" src="https://www.youtube.com/embed/ZQrIYGhDRnc" 
+              frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
   <section style="background-color: #f9fafb; padding: 60px 20px;">
     <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
       <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">What Our Users Say</h2>
