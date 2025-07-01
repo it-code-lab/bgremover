@@ -91,7 +91,7 @@
     <?php include("components/header.php"); ?>
     <main class="container" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
     <h1>Privacy Policy</h1>
-    <p>Last updated: <?= date("F d, Y") ?></p>
+    <p>Last updated: June 20, 2025</p>
 
     <p>At <strong>CleanPix</strong> (https://cleanpix.readernook.com), we are committed to protecting your privacy and
         handling your data transparently and securely. This Privacy Policy outlines how we collect, use, and safeguard
